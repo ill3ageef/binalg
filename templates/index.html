@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table to Matrix</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <form method="POST">
+        <table>
+            {% for i in range(table|length) %}
+                <tr>
+                    {% for j in range(table[0]|length) %}
+                        <td><input type="text" name="cell"></td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <button type="button" onclick="addRow()">Add Row</button>
+        <button type="button" onclick="addColumn()">Add Column</button>
+        <button type="button" onclick="removeRow()">Remove Row</button>
+        <button type="button" onclick="removeColumn()">Remove Column</button>
+        <br>
+        <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+
+    <script>
+        function addRow() {
+            var table = document.querySelector('table');
+            var newRow = table.insertRow(table.rows.length);
+            for (var i = 0; i < table.rows[0].cells.length; i++) {
+                var cell = newRow.insertCell(i);
+                cell.innerHTML = '<input type="text" name="cell">';
+            }
+            updateCellWidth();
+        }
+
+        function addColumn() {
+            var table = document.querySelector('table');
+            for (var i = 0; i < table.rows.length; i++) {
+                var cell = table.rows[i].insertCell(table.rows[i].cells.length);
+                cell.innerHTML = '<input type="text" name="cell">';
+            }
+            updateCellWidth();
+        }
+
+        function removeRow() {
+            var table = document.querySelector('table');
+            if (table.rows.length > 1) {
+                table.deleteRow(table.rows.length - 1);
+                updateCellWidth();
+            }
+        }
+
+        function removeColumn() {
+            var table = document.querySelector('table');
+            if (table.rows[0].cells.length > 1) {
+                for (var i = 0; i < table.rows.length; i++) {
+                    table.rows[i].deleteCell(table.rows[i].cells.length - 1);
+                }
+                updateCellWidth();
+            }
+        }
+
+        function updateCellWidth() {
+            var table = document.querySelector('table');
+            var cellCount = table.rows[0].cells.length;
+            for (var i = 0; i < table.rows.length; i++) {
+                for (var j = 0; j < table.rows[i].cells.length; j++) {
+                    table.rows[i].cells[j].style.width = 'calc(100% / ' + cellCount + ')';
+                }
+            }
+        }
+
+        function submitForm() {
+        var table = document.querySelector('table');
+        var formData = [];
+
+        for (var i = 0; i < table.rows.length; i++) {
+            var row = [];
+            for (var j = 0; j < table.rows[i].cells.length; j++) {
+                var cellValue = table.rows[i].cells[j].querySelector('input').value;
+                row.push(cellValue);
+            }
+            formData.push(row);
+        }
+
+        var jsonData = JSON.stringify(formData);
+
+        // Create a hidden input field to store the JSON data
+        var jsonInput = document.createElement('input');
+        jsonInput.type = 'hidden';
+        jsonInput.name = 'json_data';
+        jsonInput.value = jsonData;
+
+        // Append the hidden input to the form
+        var form = document.querySelector('form');
+        form.appendChild(jsonInput);
+
+        // Submit the form
+        form.submit();
+    }
+
+    </script>
+
+    
+        {% if matrix %} 
+        <div class="result">
+            <h3>Simplist Form:</h3>
+            <pre>{{ matrix }}</pre>
+        </div>
+        {% endif %}
+    
+</body>
+</html>

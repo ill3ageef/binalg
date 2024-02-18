@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Kode+Mono&display=swap');
+
+* {
+    font-family: "Kode Mono", monospace;
+}
+
+body {
+    padding: 50px;
+    background: #2D3250;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+button {
+    width: 10em;
+    height: 2em;
+    border-radius: 1em;
+    background: #424769;
+    color: #7077A1;
+    border: solid 2px #2a2e44;
+    text-align: center;
+}
+
+button:hover {
+    background: #F6B17A;
+    color: #7077A1;
+}
+
+th, td {
+    width: calc(100% / {{ table[0]|length }});
+}
+
+.result {
+    color: #F6B17A;
+    padding: 20px;
+    border-radius: 20px;
+    border: solid 5px #F6B17A;
+}
+
+input[type="text"] {
+    width: 99%;
+    border-radius: 10px;
+    background: #7077A1;
+    color: #F6B17A;
+    border: 1px solid #424769;
+    height: 3em;
+    text-align: center;
+    font-size: large;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
