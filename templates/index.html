@@ -12,18 +12,30 @@
             {% for i in range(table|length) %}
                 <tr>
                     {% for j in range(table[0]|length) %}
-                        <td><input type="text" name="cell"></td>
+                        <td><input type="number" name="cell"></td>
                     {% endfor %}
                 </tr>
             {% endfor %}
         </table>
         <br>
-        <button type="button" onclick="addRow()">Add Row</button>
-        <button type="button" onclick="addColumn()">Add Column</button>
-        <button type="button" onclick="removeRow()">Remove Row</button>
-        <button type="button" onclick="removeColumn()">Remove Column</button>
-        <br>
-        <button type="button" onclick="submitForm()">Submit</button>
+        <div class="control">
+            <div class="buttons">
+                <button type="button" onclick="addRow()">Add Row</button>
+                <button type="button" onclick="addColumn()">Add Column</button>
+                <button type="button" onclick="removeRow()">Remove Row</button>
+                <button type="button" onclick="removeColumn()">Remove Column</button>
+                <br>
+                <button type="button" onclick="submitForm()">Submit</button>
+            </div>
+            <div class="key">
+                <h2>Key:</h2>
+                <ul>
+                    <li>Addition: OR</li>
+                    <li>Multiplication: AND</li>
+                    <li>Apostrophe: NOT</li>
+                </ul>
+            </div>
+        </div>
     </form>
 
     <script>
@@ -32,7 +44,7 @@
             var newRow = table.insertRow(table.rows.length);
             for (var i = 0; i < table.rows[0].cells.length; i++) {
                 var cell = newRow.insertCell(i);
-                cell.innerHTML = '<input type="text" name="cell">';
+                cell.innerHTML = '<input type="number" name="cell">';
             }
             updateCellWidth();
         }
@@ -41,7 +53,7 @@
             var table = document.querySelector('table');
             for (var i = 0; i < table.rows.length; i++) {
                 var cell = table.rows[i].insertCell(table.rows[i].cells.length);
-                cell.innerHTML = '<input type="text" name="cell">';
+                cell.innerHTML = '<input type="number" name="cell">';
             }
             updateCellWidth();
         }

@@ -19,8 +19,9 @@ form {
 }
 
 button {
-    width: 10em;
-    height: 2em;
+    width: 20em;
+    height: 4em;
+    font-size: 1em;
     border-radius: 1em;
     background: #424769;
     color: #7077A1;
@@ -44,7 +45,23 @@ th, td {
     border: solid 5px #F6B17A;
 }
 
-input[type="text"] {
+.buttons {
+    width: 50%;
+}
+
+.control {
+    display: flex;
+
+}
+
+.key {
+    border: solid 5px #7077A1;
+    color: #7077A1;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+input[type="number"] {
     width: 99%;
     border-radius: 10px;
     background: #7077A1;
